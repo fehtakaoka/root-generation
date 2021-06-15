@@ -13,7 +13,7 @@ This project was largely based on the work done by Dupuy [1,2] and has as final 
 *Figure 1: Flow Chart for root generation*
 
 ## Results and Discussion
-With morphology descriptions of certain root patterns presented in [1], RootGen was developed in MATLAB for creation of these by varying morphological parameters and geometric restrictions (Figure 2). The mathematical description of roots is given by graphs, which are useful to represent branching, forking and growth. Is has been also developed a Python script that converts the resulting graph in a 3D solid inside the finite elements software Abaqus (Figure 3) so that static and dynamic simulations can be performed (Figure 4).
+With morphology descriptions of certain root patterns presented in [1], RootGen was developed in MATLAB for creation of these by varying morphological parameters and geometric restrictions (Figure 2). The mathematical description of roots is given by graph theory, which are useful to represent branching, forking and growth. Is has been also developed a Python script that converts the resulting graph in a 3D solid inside the finite elements software Abaqus (Figure 3) so that static and dynamic simulations can be performed (Figure 4).
 
 
 ![RootGen](assets/RootGen.png)
