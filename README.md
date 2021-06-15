@@ -20,9 +20,11 @@ With morphology descriptions of certain root patterns presented in [1], RootGen 
 *Figure 2: RootGen - Creation of a Root of Heart Pattern*
 
 ![AbaqusTree](assets/AbaqusTree.png)
+
 *Figure 3: Example of root imported in Abaqus*
 
 ![AbaqusRootSim](assets/AbaqusRootSim.png)
+
 *Figure 4: Example of a simple simulation in Abaqus*
 
 ## Acknowledgements
