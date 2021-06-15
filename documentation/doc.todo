@@ -1,0 +1,35 @@
+- (Constructor) Inicialização (definições e atribuições iniciais da raíz)
+	- Criação da tap root, se aplicável;
+	- Definição do global least common ancestor (GlobalLCA);
+	- Anexação dos laterals à lista inicial do global LCA;
+	- Anexação dos laterals à lista de todos os axes da RootStruct;
+
+- (Método grow()) Crescimento de todos os axes da raiz - Para testes, utilizar stepGrow() (criação do esqueleto da raíz, sem a atribuição dos diâmetros de cada segmento)
+	- Crescimento de todos os axes enquanto ainda houver ativos deles na RootStruct;
+
+- (Método fill()) 
+
+
+- Interfaces gráficas criadas usando GUIDE do Matlab;
+- Iniciar o programa: digite "RootGen" na linha de comando do Matlab;
+- Para testes sem a interface gráfica:
+	- Criação de um objeto p do tipo Parameters;
+	- Criação de um objeto r do tipo RootStruct;
+	- r.grow() ou r.stepgrow()
+	- 
+
+- Notação/Convenção:
+  - MTG: Multiscale Tree Graph (Godin C and Caraglio Y 1998 A multiscale model of plant topological structures. J. Theor. Biol. 191, 1–46.);
+  - Apex/meristema: região de onde a raíz cresce;
+  - Segmentos de raíz: elementos da raíz discretizada;
+	- Nó/node: elemento da estrutura de dados (árvore/grafo);
+	- Internó/internó: arestas da estrutura de dados (árvore/grafo) - representam os segmentos de raíz;
+  - Eixo/Axe: conjunto ordenado de nós com mesma direção de crescimento / classe que representa este;
+  - RootStruct: classe que representa a estrutura radicular completa;
+  - Least Common Ancestor (LCA): nó antecessor/parente de todos os nós de um conjunto, exceto por ele mesmo;
+  - Global LCA: LCA do conjunto formado por todos os nós de RootStruct;
+  - GlbLCA: classe que representa a entidade LCA;
+  - Laterals: conjunto de ramificações laterais iniciais de axes;
+	- 
+	- dl: passo de discretização dos segmentos de raíz;
+- Para mais informações sobre as classes e seus métodos e atributos associados: "help"

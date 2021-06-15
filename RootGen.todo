@@ -1,0 +1,83 @@
+RootGen todo list:
+  ✔ Separar arquivos em pastas; @done (18:50)
+  ✔ Permitir que tap root não tenha taper; @done (17:57)
+  ✔ Problema com fork?? @done (02:12)
+  ✔ Permitir a criação de certas tipos de raízes pré-determinadas (tap, heart, herringbone, ...); @done (02:12)
+    ✔ Implementar herringbone: @done (02:12)
+      ✔ Implementar multiplas ramificações; @done (02:13)
+  ☐ Problema: numero de meristemas miniciais = numero de nos iniciais (iguais, pois todos na origem);
+  ✔ Resolver problema com distancia de ramificação nos axis (contada a partir do segundo nó); @done (00:25)
+  ✔ Ler os artigos originarios da correlação da taper equation; @done (17:44)
+
+  GUI:
+    ✔ Permitir alteração de parâmetros pela gui; @done (23:41)
+      ✔ Criar classe de paramêtros a ser acessada pela RootStruct; @done (01:27)
+    ✔ Limpar características da estrutura radicular antiga na tabela "Root Structure Overview" quando criado um novo; @done (00:01)
+
+  RootStruct:
+    ✔ constructor: adicionar nó principal de onde os n0 apices iniciais serão herdados (evitar ambiguidade na geração do arquivo .inp) @done (18:01)
+    ✔ boundaries: nós estão subindo para cima do solo @done (19:44)
+    ✔ Verificiar o porque das direçoes inicias estarem concentradas em [0 0 -1]; @done (21:39)
+    ✔ Incluir opcao para sistemas com tap root; @done (22:34)
+    ✔ growth function: parar de crescer apenas quando todos os apices estiverem mortos; @done (00:23)
+    ✔ constructor: Problema com indice de nós iniciais quando N_0 = 1 (criação de dois nós iniciais) @done (19:32)
+    ✔ criar função para calcular diâmetros dado um volume fixo; @done (19:29)
+      ✔ volume do eixo é calculado como a soma do volume de cilindros componentes (que formarão os elementos de vigas), i.e. a seção transversal é tida como constante ao longo de cada internode; @done (17:59)
+      ✔ excluir nós cujo diâmetro sejam negativos (devido ao taper equation) @done (19:29)
+        ✔ quando objetos são removidos pela função delete(), todos os objetos que o referenciam passam a referenciar um objetivo inválido (que pode ser verificado pela função isvalid()) @done (19:45)
+        ✔ Adaptar todas as funções de display para que não mostrem esses nós; @done (19:45)
+        ✔ Problema com a função fill, pois será necessário iterar até obter o volume fixo desejado, e já na primeira iteração a estrutura radicular é podada; @done (19:29)
+    ☐ criar funcao para exportar arquivo .inp para software abaqus;
+
+  Axe:
+    ✔ Problema: em axis, quando boundaries são atingidos, apex é morto, mas se for por ordem de ramificação, axe ainda pode ser incrementado, desde que geometrical boundaries nao tenham sido atingidos; @done (21:00)
+    ✔ ram: @done (23:41)
+      ✔ ! Problema com a ramificação: nem sempre há ramificação quando a distância do ultimo nó ramificado é maior que a distância de ramificação pré-definida; @done (01:17)
+      ✔ Verificar se o próximo nó vai se bifurcar (fork) para que ele seja criado como ForkedNode e não como um nó normal; @done (21:48)
+      ✔ Permitir não ramificação da tap root; @done (23:41)
+      ✔ Permitir a ramificação deterministica ou estocastica; @done (23:41)
+    ✔ fork: implementar @done (22:40)
+      ✔ Criar dois novos eixos @done (21:52)
+      ✔ Matar apex @done (21:52)
+      ✔ Criar nova classe ForkNode que possui atributos left e right para novos eixos @done (01:17)
+      ✔ Definir direção para os dois novos eixos: @done (21:01)
+      ✔ Permitir não bifurcação de axis; @done (23:41)
+
+  Node:
+
+Variações de RootGen de SIMUL3R e escolhas de implementação:
+  ☐ Programação orientada a objetos com o padrão de arquitetura MVC;
+  ☐ Apenas três escalas de representação (modularidades MTG): root structure, axis e nodes;
+  ☐ A representação computacional da estrutura radicular é feita a partir de árvores;
+  Inicialização (N_0 apex na origem (0 0 0) => N_0 axis diferentes):
+    ☐ Estocástica:
+      ☐ Direção de crescimento dos N_0 apex iniciais é aleatória e os paramêtros da distribuição foram obtidos empiricamente variando os valores e mantendo aqueles mais verossossímeis a realidade;
+    ☐ Para evitar ambiguidades ao exportar o arquivo para ou .inp e para ter uma referência para o endereço em memória de todos os eixos, a lista de todos os axis (apex) iniciais está contida numa subclasse de Node (GlbLCA), mais espeficamente no atributo initAxes. Este nó principal possui como bearing axe o primeiro axe criado;
+    ☐ O conjunto de N_0 apex iniciais não possui um número fixo de lateral axis;
+  ☐ Boundary conditions: radius, branching order, depth e + (z<0 = raízes estão no solo e não no ar);
+  Crescimento:
+    ☐ Caso o nó satisfaça as condições para bifurcação e para ramificação, sera realizada apenas a bifurcação (visto que já é uma forma de ramificação);
+    ☐ Incrementação (incr):
+      ☐ Condição de bifurcação já é verificada neste método para que a criação do nó a ser bifurcado já seja da classse ForkedNode;
+    ☐ Ramificação (branch):
+      ☐ Parâmetro n_branches permite a criação de um número arbitrário de ramificações, uma vez que as condições de ramificação tenham sido satisfeitas;
+      ☐ Estocástico:
+        ☐ Direção da ramificação é aleatória, normalmente distribuída, com a média na direção do eixo anterior e com desvio padrão obtido empiricamente variando os valores e mantendo aqueles mais verossímeis a realidade;
+      ☐ Determinístico:
+        ☐ Eixo parente é vertical => eixo filho é horizontal;
+        ☐ Eixos horizontais tem direção no plano xy aleatória;
+        ☐ Implementação de duas funções:
+          ☐ canBranch: de acordo com o artigo, mas seu uso não permite que a distribuição horizontal/vertical dos eixos imposta na estrutura radicular seja assegurada;
+          ☐ canBranch2: versão modificada do artigo, cujo uso permite que a distribuição horizontal/vertical dos eixos imposta na estrutura radicular seja assegurada;
+    ☐ Bifurcação (fork):
+      ☐ Ramificação tem preferência em relação à bifurcação;
+      ☐ Criação de dois novos eixos, cujos vetores de direções de crescimento, r1 e r2, junto com a direção de crescimento do axe mãe, d, são coplanares. O ângulo feito entre o vetor d e os vetores r1 e r2 são iguais. Desta forma, a resultante da soma dos vetores r1 e r2 é um vetor colinear com d (r1 + r2 = k.d);
+      ☐ O primeiro vetor de crescimento r1 tem direção aleatória com as mesmas definições da direção de ramificação aleatória;
+      ☐ O coeficiente entre os diamêtros iniciais de uma raíz mãe e uma raíz filha para a bifurcação é o mesmo que o de ramificação;
+  Preenchimento:
+    ☐ N_0 axis iniciais possuem o mesmo diâmetro inicial;
+
+Ideias de continuação:
+  ☐ Treinar rede neural para prever máximo torque de flexão antes do uprooting baseado nos parametros:
+    ☐ Coordenadas de todos os nós constituintes da estrutura radicular;
+    ☐ Parametros do solo;

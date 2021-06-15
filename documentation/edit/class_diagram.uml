@@ -1,0 +1,141 @@
+[For the class diagram insert this uml in https://www.planttext.com]
+ @startuml
+ title <b>RootGen</b>
+        package "model" #DDDDDD {
+             class RootStruct << (H,#E6FFE6)  >>  {
+                 {static} +defaultView
+                 {static} +min_diam
+                 {static} +params : Parameters
+                 {static} +vol_tolErr
+                 {field} -axis Axe
+                 {field} -finalVolume : double
+                 {field} -glbAxeIndex : double
+                 {field} -glbNodeIndex : double
+                 {field} -global_lca : GlbLCA
+                 {field} -hAxisIndex : double
+                 {field} -tapRoot TapRoot
+                ____
+                 +RootStruct() 
+                 .. Main methods ..
+                 +stepGrow() 
+                 +grow() 
+                 +fill() 
+                 .. Auxiliary methods ..
+                 +getNewNodeIndex() 
+                 +getNewAxeIndex() 
+                 +addAxe() 
+                 +hasActiveAxis() 
+                 +pruneFromNode() 
+                 +getDetermGrowthDir() 
+                 {static} +getSymRandDir() 
+                 {static} +getSymHorizDir() 
+                 {static} +getRandomBiasedGrowthDir() 
+                 {static} +getRandomGrowthDir() 
+                 {static} +boundaryIsReached() 
+                 {static} +topoBoundaryIsReached()
+                 {static} +geomBoundaryIsReached()
+                 {static} +getBranchDiameter()
+                 {static} +getNextNodeDiameter()
+                 .. Display methods ..
+                 +drawRootStruct()
+                 +printRootStruct()
+             }
+             class Axe << (V,#E6FFE6)  >>  {
+                 {field} -id : uint32
+                 {field} -rootStruct : RootStruct
+                 {field} -order : uint32
+                 {field} -lca : Node
+                 {field} #apex : Node
+                 {field} #growth_dir : double
+                 {field} #lastRamPos : double
+                 {field} +len 
+                 {field} +n_nodes 
+                ____
+                 +Axe() 
+                 .. Auxiliary Methods ..
+                 +nextNodeWillFork() 
+                 +canBranch() 
+                 +incr() 
+                 +branch() 
+                 +fork() 
+                 {static} +getSegmentVolume() 
+                 .. Main methods ..
+                 +growAxe()
+                 +fillAxe() 
+                 .. Display Methods ..
+                 +toStr() 
+                 +printAxe() 
+                 +printNodesFromAxe() 
+                 +drawAxe() 
+                 {static} +plotNodes() 
+                 .. Unused methods ..
+                 +canBranch2() 
+             }
+             class TapRoot << (V,#E6FFE6)  >>  {
+                 {field} -branches : logical
+                 {field} -hasTaper : logical
+                ____
+                 +TapRoot()
+             }
+             class Node << (V,#E6FFE6)  >>  {
+                 {field} -id : uint32
+                 {field} -rootStruct : RootStruct
+                 {field} -axe : Axe
+                 {field} #coord : double
+                 {field} +next : Node
+                 {field} +ramif : Node
+                 {field} +killed : logical
+                 {field} +diam : double
+                ____
+                 +Node()
+                 +toStr()
+                 +killApex()
+                 +getDistanceFromPos()
+                 +getDistance()
+             }
+             class GlbLCA << (V,#E6FFE6)  >>  {
+                 {field} -initAxis : Axe
+                 {field} -counter
+                ____
+                 +GlbLCA() 
+                 +appendInitAxe() 
+             }
+             class ForkedNode << (V,#E6FFE6)  >>  {
+                 {field} +left : Node
+                 {field} +right : Node
+                ____
+                 +ForkedNode()
+             }
+             class Parameters << (H,#E6FFE6)  >>  {
+                 {field} -branch_tap [[  {No tooltip} ]]
+                 {field} -brcDRatio [[  {No tooltip} ]]
+                 {field} -dl [[  {No tooltip} ]]
+                 {field} -fixed_volume [[  {No tooltip} ]]
+                 {field} -fork_enable [[  {No tooltip} ]]
+                 {field} -hv_distr [[  {No tooltip} ]]
+                 {field} -L_branch [[  {No tooltip} ]]
+                 {field} -L_fork [[  {No tooltip} ]]
+                 {field} -max_depth [[  {No tooltip} ]]
+                 {field} -max_order [[  {No tooltip} ]]
+                 {field} -max_radius [[  {No tooltip} ]]
+                 {field} -n_branches [[  {No tooltip} ]]
+                 {field} -n_laterals [[  {No tooltip} ]]
+                 {field} -stochastic [[  {No tooltip} ]]
+                 {field} -tap_root [[  {No tooltip} ]]
+                 {field} -taper_enable [[  {No tooltip} ]]
+                ____
+                 +Parameters()
+                 +saveParams()
+                 +loadParams()
+                 -setDefault()
+             }
+         Axe  -up-|>  matlab.mixin.Heterogeneous  
+         TapRoot  -up-|>  Axe  
+         Node  -up-|>  matlab.mixin.Heterogeneous  
+         GlbLCA  -up-|>  Node  
+         ForkedNode  -up-|>  Node  
+         RootStruct "0..1" *-- "1" Parameters
+         RootStruct "1..1" *- "1..*" Axe
+         Axe "1..1" *- "1..*" Node
+    }
+ @enduml
