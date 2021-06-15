@@ -15,22 +15,22 @@ Figure 1 shows a simplified view of the steps required to export a root.
 
 Figure 2 shows a detailed explanation of some details needed to construct the root structure satisfying all the restrictions.
 ![GenerationProcess](assets/GenerationProcess.png)
-*Figure 1: Detailed steps of the generation process*
+*Figure 2: Detailed steps of the generation process*
 
 ## Results and Discussion
-With morphology descriptions of certain root patterns presented in [1], RootGen was developed in MATLAB for creation of these by varying morphological parameters and geometric restrictions (Figure 2). The mathematical description of roots is given by graph theory, which are useful to represent branching, forking and growth. Is has been also developed a Python script that converts the resulting graph in a 3D solid inside the finite elements software Abaqus (Figure 3) so that static and dynamic simulations can be performed (Figure 4).
+With morphology descriptions of certain root patterns presented in [1], RootGen was developed in MATLAB for creation of these by varying morphological parameters and geometric restrictions (Figure 3). The mathematical description of roots is given by graph theory, which are useful to represent branching, forking and growth. Is has been also developed a Python script that converts the resulting graph in a 3D solid inside the finite elements software Abaqus (Figure 4) so that static and dynamic simulations can be performed (Figure 5).
 
 
 ![RootGen](assets/RootGen.png)
-*Figure 2: RootGen - Creation of a Root of Heart Pattern*
+*Figure 3: RootGen - Creation of a Root of Heart Pattern*
 
 ![AbaqusTree](assets/AbaqusTree.png)
 
-*Figure 3: Example of root imported in Abaqus*
+*Figure 4: Example of root imported in Abaqus*
 
 ![AbaqusRootSim](assets/AbaqusRootSim.png)
 
-*Figure 4: Example of a simple simulation in Abaqus*
+*Figure 5: Example of a simple simulation in Abaqus*
 
 ## Acknowledgements
 This project was done under the supervision of Professor Josué Labaki, PhD., as part of the Scientific Initiation Program in the State University of Campinas (UNICAMP) in 2018. This work was funded with a scholarship from PRP/FAEPEX under the grant Fapesp 2017/01450-0.
