@@ -8,6 +8,11 @@ Storms, erosions and other natural phenomena can damage the integrity of forests
 Being an interdisciplinary work, a coherent biological modeling is essential to the representation of these structures.
 This project was largely based on the work done by Dupuy [1,2] and has as final objective the possibility of performing static and dynamic analysis of the root and its interaction with the soil. An immediate application is the understanding of the transmissibility of vibrations, such as seismic waves spread by the soil through trees, and thus the potential use of forests as natural seismic metamaterials [3].
 
+## Getting Started
+In order to run the software, you'll need MATLAB 2016 or newer installed. If you want to simulate with mechanical analysis, you'll also need Abaqus and Python 3.*.
+
+Open ```RootGen.m``` inside MATLAB and run. The GUI will then pop up. More information about the usage can be found on [docs/1 - GUI.pdf](docs/1%20-%20GUI.pdf).
+
 ## Flow Chart for Root Generation
 Figure 1 shows a simplified view of the steps required to export a root.
 ![FlowChart](assets/FlowChart.png)
