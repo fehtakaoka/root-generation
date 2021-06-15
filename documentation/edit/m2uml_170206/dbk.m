@@ -1,3 +1,0 @@
-function    dbk( varargin )
-end
-
