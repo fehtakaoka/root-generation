@@ -1,7 +1,5 @@
 # Class Documentation
 
-## Class Representation
-![Class Representation](../assets/ClassRepresentation.png)
-
-## Class Diagram
-![Class Diagram](../assets/class_diagram.png)
+| Representation | Diagram |
+|:--:|:--:|
+| ![Class Representation](../assets/ClassRepresentation.png) | ![Class Diagram](../assets/class_diagram.png) |
