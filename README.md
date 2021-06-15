@@ -9,8 +9,13 @@ Being an interdisciplinary work, a coherent biological modeling is essential to 
 This project was largely based on the work done by Dupuy [1,2] and has as final objective the possibility of performing static and dynamic analysis of the root and its interaction with the soil. An immediate application is the understanding of the transmissibility of vibrations, such as seismic waves spread by the soil through trees, and thus the potential use of forests as natural seismic metamaterials [3].
 
 ## Flow Chart for Root Generation
-![RootGen](assets/FlowChart.png)
+Figure 1 shows a simplified view of the steps required to export a root.
+![FlowChart](assets/FlowChart.png)
 *Figure 1: Flow Chart for root generation*
+
+Figure 2 shows a detailed explanation of some details needed to construct the root structure satisfying all the restrictions.
+![GenerationProcess](assets/GenerationProcess.png)
+*Figure 1: Detailed steps of the generation process*
 
 ## Results and Discussion
 With morphology descriptions of certain root patterns presented in [1], RootGen was developed in MATLAB for creation of these by varying morphological parameters and geometric restrictions (Figure 2). The mathematical description of roots is given by graph theory, which are useful to represent branching, forking and growth. Is has been also developed a Python script that converts the resulting graph in a 3D solid inside the finite elements software Abaqus (Figure 3) so that static and dynamic simulations can be performed (Figure 4).
