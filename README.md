@@ -13,7 +13,7 @@ Figure 1 shows a simplified view of the steps required to export a root.
 ![FlowChart](assets/FlowChart.png)
 *Figure 1: Flow Chart for root generation*
 
-Figure 2 shows a detailed explanation of some details needed to construct the root structure satisfying all the restrictions.
+Figure 2 shows a detailed explanation of some details needed to construct the root structure satisfying all the restrictions. For more information about the classes, check the [docs/README.md](docs/README.md).
 ![GenerationProcess](assets/GenerationProcess.png)
 *Figure 2: Detailed steps of the generation process*
 
