@@ -1,23 +1,29 @@
 # Tree Root Modeling for Mechanical Analysis
 
 ## Abstract
-This work developed a software for modeling tree roots for mechanical analysis. It generates 3D solids with geometries based on biological parameters of trees found on nature. Four morphological patterns were implemented for automatic generation. The tree is then imported automatically in a finite elements software.
+This work developed a MATLAB software called RootGen for modeling tree roots for mechanical analysis. It generates 3D solids with geometries based on biological parameters of trees found on nature. Four morphological patterns were implemented for automatic generation. The tree is then imported automatically in a finite elements software.
 
 ## Introduction
 Storms, erosions and other natural phenomena can damage the integrity of forests and isolated trees, affecting natural coverage and compromising the safety of buildings and people. The undertanding of the mechanisms of tree anchorage on soils can help avoid its uproot when undergoing these adversities [1].
+Being an interdisciplinary work, a coherent biological modeling is essential to the representation of these structures.
+This project was largely based on the work done by Dupuy [1,2] and has as final objective the possibility of performing static and dynamic analysis of the root and its interaction with the soil. An immediate application is the understanding of the transmissibility of vibrations, such as seismic waves spread by the soil through trees, and thus the potential use of forests as natural seismic metamaterials [3].
+
+## Flow Chart for Root Generation
+![RootGen](assets/FlowChart.png)
+*Figure 1: Flow Chart for root generation*
 
 ## Results and Discussion
-
-| ![RootGen](assets/RootGen.png) |
-|:--:|
-| *Figure 1: RootGen - Creation of a Root of Heart Pattern* |
+With morphology descriptions of certain root patterns presented in [1], RootGen was developed in MATLAB for creation of these by varying morphological parameters and geometric restrictions (Figure 2). The mathematical description of roots is given by graphs, which are useful to represent branching, forking and growth. Is has been also developed a Python script that converts the resulting graph in a 3D solid inside the finite elements software Abaqus (Figure 3) so that static and dynamic simulations can be performed (Figure 4).
 
 
-| ![RootGen](assets/AbaqusTree.png) |
-|:--:|
-| *Figure 2: Example of root imported in Abaqus* |
+![RootGen](assets/RootGen.png)
+*Figure 2: RootGen - Creation of a Root of Heart Pattern*
 
-## Conclusion
+![AbaqusTree](assets/AbaqusTree.png)
+*Figure 3: Example of root imported in Abaqus*
+
+![AbaqusRootSim](assets/AbaqusRootSim.png)
+*Figure 4: Example of a simple simulation in Abaqus*
 
 ## Acknowledgements
 This project was done under the supervision of Professor Josué Labaki, PhD., as part of the Scientific Initiation Program in the State University of Campinas (UNICAMP) in 2018. This work was funded with a scholarship from PRP/FAEPEX under the grant Fapesp 2017/01450-0.
